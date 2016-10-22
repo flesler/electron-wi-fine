@@ -1,3 +1,6 @@
+// https://github.com/mongodb-js/electron-squirrel-startup
+if (require('electron-squirrel-startup')) return;
+
 const electron = require('electron');
 const app = electron.app;
 

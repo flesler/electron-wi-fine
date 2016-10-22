@@ -1,18 +1,20 @@
 {
-	"name": "wifine",
-	"productName": "Wi-Fine",
-	"version": "1.0.0",
-	"author": "Ariel Flesler <aflesler@gmail.com>",
-	"description": "A connectivity monitoring app, built on Electron",
-	"homepage": "https://github.com/flesler/electron-wi-fine",
-	"license": "MIT",
-	"main": "main.js",
-	"private": true,
-	"dependencies": {
-		"auto-launch": "5.0.1",
-		"configstore": "2.1.0",
-		"debug": "2.2.0",
-		"electron-notifications": "0.1.1",
-		"electron-online": "1.0.0"
-	}
+  "name": "wifine",
+  "productName": "Wi-Fine",
+  "version": "1.0.0",
+  "author": "Ariel Flesler <aflesler@gmail.com>",
+  "description": "A connectivity monitoring app, built on Electron",
+  "homepage": "https://github.com/flesler/electron-wi-fine",
+  "license": "MIT",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+    "auto-launch": "5.0.1",
+    "debug": "2.2.0",
+    "electron-config": "0.2.1",
+    "electron-notifications": "0.1.1",
+    "electron-online": "1.0.0",
+    "electron-squirrel-startup": "1.0.0",
+    "request": "2.75.0"
+  }
 }

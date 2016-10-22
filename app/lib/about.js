@@ -6,7 +6,7 @@ const pkg = require('../package.json');
 
 exports.show = function() {
 	dialog.showMessageBox({
-		type: 'info', buttons: ['OK'], title: 'About ' + pkg.productName,
+		type: 'info', buttons: ['OK'],
 		icon: status.ONLINE.icon, message: getMessage()
 	});
 };

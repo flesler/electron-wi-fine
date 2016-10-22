@@ -2,7 +2,7 @@ const notifier = require('electron-notifications');
 const settings = require('./settings');
 
 exports.isEnabled = function() {
-	return settings.isEnabled('notifications', true);
+	return settings.get('notifications', true);
 };
 
 exports.setEnabled = function(state) {

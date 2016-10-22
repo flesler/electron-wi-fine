@@ -1,14 +1,12 @@
-const Configstore = require('configstore');
+const Config = require('electron-config');
 const pkg = require('../package.json');
 
-const store = new Configstore(pkg.name);
+const config = new Config(pkg.name);
 
-store.isDefined = function(key) {
-	return store.get(key) != null;
+exports.get = function(key, def) {
+	return config.has(key) ? config.get(key) : def;
 };
 
-store.isEnabled = function(key, def) {
-	return store.isDefined(key) ? store.get(key) : def;
+exports.set = function(key, value) {
+	config.set(key, value);
 };
-
-module.exports = store;

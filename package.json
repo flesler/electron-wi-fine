@@ -15,7 +15,7 @@
 		"appId": "com.flesler.wifine",
 		"copyright": "Copyright @ 2016 Ariel Flesler",
 		"productName": "Wi-Fine",
-		"compression": "store",
+		"compression": "maximum",
 		"publish": ["github"],
 		"mac": {
 			"category": "public.app-category.utilities"
