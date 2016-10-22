@@ -1,22 +1,48 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "^1.4.1"
-  }
+	"name": "wifine",
+	"author": "Ariel Flesler <aflesler@gmail.com>",
+	"version": "1.0.0",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron app",
+		"pack": "build --dir",
+		"dist": "build"
+	},
+	"dependencies": {
+		"auto-launch": "5.0.1",
+		"configstore": "2.1.0",
+		"electron-notifications": "0.1.1",
+		"electron-online": "1.0.0"
+	},
+	"devDependencies": {
+		"electron": "^1.4.1",
+		"electron-builder": "7.14.2"
+	},
+	"repository": "flesler/electron-wi-fine",
+	"build": {
+		"appId": "com.electron.wifine",
+		"copyright": "Copyright @ 2016 Ariel Flesler",
+		"productName": "Wi-Fine",
+		"files": "*",
+		"compression": "store",
+		"publish": ["github"],
+		"mac": {
+			"category": "public.app-category.utilities"
+		},
+		"win": {
+			"iconUrl": ""
+		}
+	},
+	"directories": {
+
+	},
+	"keywords": [
+		"connectivity",
+		"monitor",
+		"online",
+		"offline",
+		"internet",
+		"latency",
+		"Electron"
+	]
 }

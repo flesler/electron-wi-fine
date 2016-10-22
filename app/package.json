@@ -1,0 +1,8 @@
+{
+	"name": "wifine",
+	"productName": "Wi-Fine",
+	"version": "1.0.0",
+	"description": "A connectivity monitor app, built on Electron",
+	"homepage": "https://github.com/flesler/electron-wi-fine",
+	"license": "MIT"
+}
