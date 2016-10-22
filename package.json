@@ -3,7 +3,8 @@
 	"scripts": {
 		"start": "electron app/ --enable-logging",
 		"pack": "build --dir",
-		"dist": "build",
+		"dist": "build --x64",
+		"dist:ia32": "build --ia32",
 		"postinstall": "install-app-deps"
 	},
 	"devDependencies": {
