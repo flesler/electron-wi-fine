@@ -1,24 +1,25 @@
 const electron = require('electron');
 const Menu = electron.Menu;
 
-const settings = require('./settings');
+const notifications = require('./notifications');
 const autolaunch = require('./autolaunch');
+const about = require('./about');
 const status = require('./status');
 
 exports.create = function() {
 	return Menu.buildFromTemplate([
-		{label: 'Show Notifications', type: 'checkbox', checked: settings.isEnabled('notifications', true), click: toggleNotifications },
-		{label: 'Launch At Startup', type: 'checkbox', checked: settings.isEnabled('autolaunch', false), click: toggleAutoLaunch },
+		{label: 'Show Notifications', type: 'checkbox', checked: notifications.isEnabled(), click: toggleNotifications },
+		{label: 'Launch At Startup', type: 'checkbox', checked: autolaunch.isEnabled(), click: toggleAutoLaunch },
 		{type: 'separator'},
+		{label: 'About...', click: about.show },
 		{label: 'Exit', role: 'quit'}
 	]);
 };
 
 function toggleNotifications(item) {
-	settings.set('notifications', item.checked);
+	notifications.setEnabled(item.checked);
 }
 
 function toggleAutoLaunch(item) {
-	settings.set('autolaunch', item.checked);
 	autolaunch.setEnabled(item.checked);
 }

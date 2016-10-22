@@ -1,9 +1,15 @@
 const AutoLaunch = require('auto-launch');
 const pkg = require('../package.json');
 const launcher = new AutoLaunch({name: pkg.productName, isHidden:true});
+const settings = require('./settings');
 
-exports.setEnabled = function(enabled) {
-	if (enabled) {
+exports.isEnabled = function() {
+	return settings.isEnabled('autolaunch', false);
+};
+
+exports.setEnabled = function(state) {
+	settings.set('autolaunch', state);
+	if (state) {
 		launcher.enable();
 	} else {
 		launcher.disable();
