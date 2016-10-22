@@ -1,38 +1,61 @@
-# electron-quick-start
+# Wi-Fine
 
-**Clone and run for a quick way to see an Electron in action.**
+A connectivity monitoring app, built on [Electron](http://electron.atom.io).
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
+## Installation
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+Clone the repository and run `npm install`.
 
-A basic Electron application needs just these files:
+## Running
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+To run from source, run `npm start`.
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start).
+## Compiling
 
-## To Use
+Run `npm pack` to get an unpacked directory
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+Run `npm dist` to compile a single executable file
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies and run the app
-npm install && npm start
-```
+## Compatibility
 
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
+Being based on Electron, it should work on Windows, Mac OSX and Linux. I myself have set it up and tested it **only on Windows 10** so far.
 
-## Other Example Apps
+## Screenshots
 
-For more example apps, see the
-[list of boilerplates](http://electron.atom.io/community/#boilerplates)
-created by the awesome electron community.
+### Toast Notifications (optional)
 
-#### License [CC0 1.0 (Public Domain)](LICENSE.md)
+![Online](screens/online-alert.png)
+![Offline](screens/offline-alert.png)
+
+### Tray Icon
+
+![Online](screens/online-tray.png)
+![Offline](screens/offline-tray.png)
+
+### Context Menu
+
+![](screens/context-menu.png)
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2016 Ariel Flesler <aflesler@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
