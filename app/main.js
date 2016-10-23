@@ -9,6 +9,7 @@ const menu = require('./lib/menu');
 const connectivity = require('./lib/connectivity');
 const notifications = require('./lib/notifications');
 const autolaunch = require('./lib/autolaunch');
+const error = require('./lib/error');
 
 app.on('ready', function () {
 	tray.setMenu(menu.create());
@@ -23,6 +24,7 @@ app.on('window-all-closed', function () {
 	app.quit();
 });
 
-process.on('uncaughtException', function() {
+process.on('uncaughtException', function(err) {
+	error.show(err);
 	app.quit();
 });

@@ -1,20 +1,20 @@
 const electron = require('electron');
 const dialog = electron.dialog;
-const shell = electron.shell;
-const https = require('https');
-const request = require('request');
-
-const status = require('./status');
+const GhReleases = require('electron-gh-releases');
 const pkg = require('../package.json');
+const error = require('./error');
 
-const URL = 'https://raw.githubusercontent.com/flesler/electron-wi-fine/master/app/package.json';
+const updater = new GhReleases({
+	repo: pkg.repository,
+	currentVersion: pkg.version
+});
 
 exports.check = function() {
-	request({url:URL, json:true}, function(err, res, newPkg) {
-		if (newPkg.version === pkg.version) {
-			showUpToDate();
+	updater.check(function (err, status) {
+		if (status) {
+			updater.download();
 		} else {
-			openDownloadPage(newPkg);
+			showUpToDate();
 		}
 	});
 };
@@ -28,14 +28,6 @@ function showUpToDate() {
 	});
 }
 
-function openDownloadPage(newPkg) {
-	const confirm = dialog.showMessageBox({
-		type: 'info',
-		message: 'A new version ' + newPkg.version + ' of ' + newPkg.productName + ' is available.',
-		detail: 'Do you want to download it now?',
-		buttons: ['Yes', 'No']
-	});
-	if (confirm === 0) {
-		shell.openExternal('https://github.com/flesler/electron-wi-fine/releases');
-	}
-}
+updater.on('update-downloaded', function (info) {
+	updater.install();
+});

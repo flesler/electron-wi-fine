@@ -1,10 +1,11 @@
 {
 	"name": "wifine",
+	"version": "1.1.0",
 	"scripts": {
 		"start": "electron app/ --enable-logging",
 		"pack": "build --dir",
-		"dist": "build --x64",
-		"dist:ia32": "build --ia32",
+		"dist": "build",
+		"release": "build --publish always",
 		"postinstall": "install-app-deps"
 	},
 	"devDependencies": {
