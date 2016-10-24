@@ -8,6 +8,7 @@ const tray = require('./lib/tray');
 const menu = require('./lib/menu');
 const connectivity = require('./lib/connectivity');
 const notifications = require('./lib/notifications');
+const sound = require('./lib/sound');
 const autolaunch = require('./lib/autolaunch');
 const error = require('./lib/error');
 
@@ -17,6 +18,7 @@ app.on('ready', function () {
 	connectivity.monitor(function(status) {
 		tray.show(status);
 		notifications.show(status);
+		sound.beep(status);
 	});
 });
 
