@@ -2,7 +2,7 @@ const platform = require('os').platform();
 
 exports.UNKNOWN = createStatus('unknown');
 exports.OFFLINE = createStatus('offline');
-exports.LOW = createStatus('low');
+exports.SLOW = createStatus('slow');
 exports.ONLINE = createStatus('online');
 
 function createStatus(id) {

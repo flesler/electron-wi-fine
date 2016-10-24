@@ -1,7 +1,7 @@
 const electron = require('electron');
 const Tray = electron.Tray;
 
-const DEFAULT = require('./status').LOW;
+const DEFAULT = require('./status').UNKNOWN;
 
 let icon;
 

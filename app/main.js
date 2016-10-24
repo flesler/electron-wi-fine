@@ -21,7 +21,7 @@ app.on('ready', function () {
 });
 
 app.on('window-all-closed', function () {
-	app.quit();
+	//app.quit();
 });
 
 process.on('uncaughtException', function(err) {
