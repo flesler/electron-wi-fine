@@ -1,20 +1,17 @@
 const electron = require('electron');
 const dialog = electron.dialog;
-const GhReleases = require('electron-gh-releases');
+const shell = electron.shell;
+const request = require('request');
 const pkg = require('../package.json');
-const error = require('./error');
 
-const updater = new GhReleases({
-	repo: pkg.repository,
-	currentVersion: pkg.version
-});
+const PACKAGE_URL = 'https://raw.githubusercontent.com/' + pkg.repository + '/master/app/package.json';
 
 exports.check = function() {
-	updater.check(function (err, status) {
-		if (status) {
-			updater.download();
-		} else {
+	request({url: PACKAGE_URL, json: true}, function(err, res, newPkg) {
+		if (newPkg.version === pkg.version) {
 			showUpToDate();
+		} else {
+			openDownloadPage(newPkg);
 		}
 	});
 };
@@ -28,6 +25,14 @@ function showUpToDate() {
 	});
 }
 
-updater.on('update-downloaded', function (info) {
-	updater.install();
-});
+function openDownloadPage(newPkg) {
+	const confirm = dialog.showMessageBox({
+		type: 'info',
+		message: newPkg.productName + ' ' + newPkg.version + ' is available to download.',
+		detail: 'Do you want to open the releases page?',
+		buttons: ['Yes', 'No']
+	});
+	if (confirm === 0) {
+		shell.openExternal('https://github.com/' + pkg.repository + '/releases');
+	}
+}

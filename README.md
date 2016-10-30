@@ -36,6 +36,12 @@ Being based on Electron, it should work on Windows, Mac OSX and Linux. I myself 
 
 ![](screens/context-menu.png)
 
+## TODO
+
+- Use DNS rather than HTTP
+- Avoid fast state switches
+- Try to make it work regardless of natural latency to servers (store fastest?)
+
 ## License
 
 The MIT License (MIT)

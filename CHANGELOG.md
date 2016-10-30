@@ -1,5 +1,9 @@
 # Wi-Fine Version History
 
+## v2.2.0 - 2016-10-30
+### Changed
+- Reverted update checker to only open releases page (gh-releases isn't working)
+
 ## v2.1.0 - 2016-10-24
 ### Added
 - Support for optional beep on status changes (online/offline. Low connectivity is silent).

@@ -13,7 +13,6 @@
     "auto-launch": "5.0.1",
     "debug": "2.2.0",
     "electron-config": "0.2.1",
-    "electron-gh-releases": "2.0.4",
     "electron-notifications": "0.1.1",
     "electron-squirrel-startup": "1.0.0",
     "request": "2.75.0"
