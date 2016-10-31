@@ -1,8 +1,16 @@
 # Wi-Fine Version History
 
 ## v2.2.0 - 2016-10-30
+### Removed
+- When checking for updates, gh-releases is not longer used and updates are not automatic
+### Added
+- Implemented DNS-based pinging but not using it for now, due to a bug in Electron/Chromium
+- About modal dialog reports which method is being used for pinging (HTTP/DNS)
 ### Changed
-- Reverted update checker to only open releases page (gh-releases isn't working)
+- Reverted updates module to only open releases page when there's a newer version
+- Connectivity status is now based on the median of latest samples, will hopefully reduce back-and-forth changes
+- HTTP-based pinging (in use) aborts requests on timeout so result timing in consistent and they don't stack
+- Updated some dependencies
 
 ## v2.1.0 - 2016-10-24
 ### Added
