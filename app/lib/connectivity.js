@@ -1,54 +1,54 @@
-const dns = require('dns');
-const http = require('http');
+/**
+ * DNS is usually a better way to test connectivity than HTTP
+ * HTTP is used regardless due to a bug in Electron/Chromium
+ * @see https://github.com/electron/electron/issues/2299
+ */
+const ping = require('./ping/http'); // require('./ping/dns')
+const onetime = require('onetime');
 const status = require('./status');
 
-const HOST = {method: 'HEAD', host: 'google.com', path: '/'};
-const INTERVAL = 3000;
-const MAX_MS = 800;
-// How many SLOW in a row to conclude
-const SLOW_ATTEMPTS = 5;
+const PING_INTERVAL = 3000;
+const SAMPLE_SIZE = 5;
 
 let last;
-let count = 0;
+let samples = [];
 
 exports.monitor = function(cb) {
-	setInterval(function() { check(cb); }, INTERVAL);
+	setInterval(function() { check(cb); }, PING_INTERVAL);
 	check(cb);
 };
 
+exports.getMode = function() {
+	return ping.NAME;
+};
+
 function check(cb) {
-	ping(function(err, ms) {
-		const curr = getStatus(err, ms);
+	const start = Date.now();
+	ping.run(onetime(function(err) {
+		record(err ? Infinity : Date.now() - start);
+		const curr = getStatus();
 		if (curr !== last) {
 			last = curr;
 			cb(curr);
 		}
+	}));
+}
+
+function record(ms) {
+	samples.push(ms);
+	if (samples.length > SAMPLE_SIZE) {
+		samples.shift();
+	}
+}
+
+function getStatus() {
+	const sorted = samples.concat().sort(function(a, b) {
+		return a - b;
 	});
+	// Use median rather than average to reduce the impact of outliers
+	const mid = Math.ceil((sorted.length - 1) / 2);
+	const median = sorted[mid];
+	if (median === Infinity) return status.OFFLINE;
+	if (median < ping.THRESHOLD) return status.ONLINE;
+	return status.SLOW;
 }
-
-function getStatus(err, ms) {
-	if (err) return status.OFFLINE;
-	if (ms <= MAX_MS) {
-		count = 0;
-		return status.ONLINE;
-	}
-	if (++count >= SLOW_ATTEMPTS || !last) {
-		return status.SLOW;
-	}
-	return last;
-}
-
-function ping(done) {
-	// Using DNS is not good enough because it has caching
-	// Using native ping I don't like because it means more running processes
-	const start = Date.now();
-	const req = http.request(HOST);
-	req.on('response', function(res) {
-		// Flush
-		res.resume();
-		done(null, Date.now() - start);
-	})
-	req.on('error', done);
-	req.end();
-}
-

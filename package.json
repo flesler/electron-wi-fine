@@ -1,6 +1,6 @@
 {
 	"name": "wifine",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"scripts": {
 		"start": "electron app/ --enable-logging",
 		"pack": "build --dir",
@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"electron": "1.4.4",
-		"electron-builder": "7.14.2"
+		"electron-builder": "7.15.2"
 	},
 	"repository": "flesler/electron-wi-fine",
 	"build": {

@@ -2,6 +2,7 @@ const electron = require('electron');
 const dialog = electron.dialog;
 
 const status = require('./status');
+const connectivity = require('./connectivity');
 const pkg = require('../package.json');
 
 exports.show = function() {
@@ -18,5 +19,6 @@ function getMessage() {
 		'Author: ' + pkg.author,
 		'Description: ' + pkg.description,
 		'Homepage: ' + pkg.homepage,
+		'Ping mode: ' + connectivity.getMode()
 	].join('\n');
 }
