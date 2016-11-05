@@ -1,5 +1,9 @@
 # Wi-Fine Version History
 
+## UNRELEASED
+### Added
+- When tray icon is double clicked, latency history is deleted and connectivity status is measured from scratch
+
 ## v2.2.0 - 2016-10-30
 ### Removed
 - When checking for updates, gh-releases is not longer used and updates are not automatic

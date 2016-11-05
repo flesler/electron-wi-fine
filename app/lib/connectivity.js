@@ -12,24 +12,32 @@ const SAMPLE_SIZE = 5;
 
 let last;
 let samples = [];
+let callback;
 
 exports.monitor = function(cb) {
-	setInterval(function() { check(cb); }, PING_INTERVAL);
-	check(cb);
+	callback = cb;
+	setInterval(check, PING_INTERVAL);
+	check();
 };
 
 exports.getMode = function() {
 	return ping.NAME;
 };
 
-function check(cb) {
+exports.reset = function() {
+	samples = [];
+	last = null;
+	check();
+};
+
+function check() {
 	const start = Date.now();
 	ping.run(onetime(function(err) {
 		record(err ? Infinity : Date.now() - start);
 		const curr = getStatus();
 		if (curr !== last) {
 			last = curr;
-			cb(curr);
+			callback(curr);
 		}
 	}));
 }
